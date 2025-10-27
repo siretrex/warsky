@@ -37,15 +37,15 @@ const Leaderboard = () => {
     );
   }
 
-  // ✅ Sort by total_points descending
+  // ✅ Sort teams by total points
   const sortedTeams = [...teams].sort((a, b) => b.total_points - a.total_points);
 
-  // 🥇 Medal colors
+  // 🥇 Medal colors for top 3
   const medalColors = ["text-yellow-400", "text-gray-300", "text-amber-700"];
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
-      <div className="max-w-5xl mx-auto">
+    <div className="min-h-screen bg-gray-900 text-white p-4 sm:p-6">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-yellow-400 flex items-center justify-center gap-2">
@@ -57,11 +57,11 @@ const Leaderboard = () => {
         </div>
 
         {/* Table */}
-        <div className="bg-gray-800 rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-gray-800 rounded-2xl shadow-xl w-full overflow-hidden">
           <table className="w-full table-auto text-left">
             <thead className="bg-gray-700 text-yellow-400 text-sm uppercase">
               <tr>
-                <th className="px-4 py-3">Rank</th>
+                <th className="px-4 py-3 text-center">Rank</th>
                 <th className="px-4 py-3">Team Name</th>
                 <th className="px-4 py-3">Leader</th>
                 <th className="px-4 py-3 text-center">Kills</th>
@@ -77,7 +77,7 @@ const Leaderboard = () => {
                     index < 3 ? "bg-gray-700/30" : ""
                   }`}
                 >
-                  {/* Rank / Medal */}
+                  {/* Rank */}
                   <td className="px-4 py-3 font-bold text-center">
                     {index < 3 ? (
                       <Medal
@@ -92,7 +92,7 @@ const Leaderboard = () => {
                   {/* Team name */}
                   <td className="px-4 py-3 font-semibold">{team.team_name}</td>
 
-                  {/* Leader name */}
+                  {/* Leader */}
                   <td className="px-4 py-3 text-gray-300">{team.leader_name}</td>
 
                   {/* Kills */}
@@ -101,7 +101,7 @@ const Leaderboard = () => {
                   {/* Matches */}
                   <td className="px-4 py-3 text-center">{team.matches_played}</td>
 
-                  {/* Total points */}
+                  {/* Points */}
                   <td className="px-4 py-3 text-center font-bold text-green-400">
                     {team.total_points}
                   </td>
@@ -113,7 +113,7 @@ const Leaderboard = () => {
 
         {/* Footer */}
         <div className="text-center text-gray-400 mt-6 text-sm">
-          WarSky Sesson Cup 1
+          WarSky Season Cup 1
         </div>
       </div>
     </div>

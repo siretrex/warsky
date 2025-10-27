@@ -62,6 +62,12 @@ const HeroPage = () => {
           >
             View Tournaments
           </button>
+          <button
+            className="bg-yellow-400 text-black mt-3 px-8 py-4 rounded-xl font-bold hover:bg-yellow-500 transition text-lg"
+            onClick={() => navigate("/leaderboard") }
+          >
+            View Leaderboard
+          </button>
         </section>
 
         {/* Tournaments Section */}
