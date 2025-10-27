@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+/* Prevent Safari bounce / overscroll effect */
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  overscroll-behavior: none; /* Prevent scroll chaining / bounce */
+  background-color: #000; /* Prevent white flash */
+}
+
+body {
+  position: fixed; /* Prevents Safari rubber banding on video backgrounds */
+  width: 100%;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* Optional: smooth scroll globally */
+html {
+  scroll-behavior: smooth;
+}
