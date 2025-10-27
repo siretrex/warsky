@@ -13,7 +13,7 @@ const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   const links = [
-    { name: "Home", href: "/home" },
+    { name: "Home", href: "/" },
     { name: "Leaderboard", href: "/leaderboard" },
   ];
 
@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-md px-6 py-4 flex justify-between items-center">
       <h1
-        onClick={() => navigate("/home")}
+        onClick={() => navigate("/")}
         className="text-3xl md:text-4xl font-bold text-yellow-400 font-heading cursor-pointer"
       >
       WarSky ESports
