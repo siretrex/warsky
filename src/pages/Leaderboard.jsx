@@ -9,7 +9,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/teams");
+        const res = await axios.get("https://warsakybackend.onrender.com/teams");
         setTeams(res.data || []);
       } catch (err) {
         console.error("Error fetching leaderboard:", err);

@@ -22,7 +22,7 @@ const RegisterUser = () => {
     setMessage("");
 
     try {
-      const res = await axios.post("http://localhost:5000/register", formData);
+      const res = await axios.post("https://warsakybackend.onrender.com/register", formData);
       setMessage(res.data.message || "Registered successfully!");
       setFormData({
         username: "",

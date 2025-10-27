@@ -78,7 +78,7 @@ const RegisterTeam = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/register-team", {
+      const res = await fetch("https://warsakybackend.onrender.com/register-team", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(team),
