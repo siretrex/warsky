@@ -113,7 +113,7 @@ const Leaderboard = () => {
 
         {/* Footer */}
         <div className="text-center text-gray-400 mt-6 text-sm">
-          Updated automatically from MongoDB ⚡
+          WarSky Sesson Cup 1
         </div>
       </div>
     </div>

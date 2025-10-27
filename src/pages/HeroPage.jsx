@@ -8,10 +8,19 @@ const HeroPage = () => {
   const [tournaments, setTournaments] = useState([]);
   const navigate = useNavigate();
 
-  // ✅ Fetch tournaments from backend
+  const handleTournamentbtn =()=>{
+
+  }
+
   useEffect(() => {
+    const navEntries = performance.getEntriesByType("navigation");
+    if (navEntries.length > 0 && navEntries[0].type === "reload") {
+      console.log("User refreshed the page!");
+    } else {
+      console.log("User opened page normally.");
+    }
     axios
-      .get("http://localhost:5000/tournament")
+      .get("https://warsakybackend.onrender.com/tournament")
       .then((res) => {
         setTournaments(res.data);
       })
@@ -49,10 +58,12 @@ const HeroPage = () => {
           </p>
           <button
             className="bg-yellow-400 text-black px-8 py-4 rounded-xl font-bold hover:bg-yellow-500 transition text-lg"
-            onClick={() =>
+            onClick={() =>{
+
               document.getElementById("tournaments").scrollIntoView({
                 behavior: "smooth",
               })
+            }
             }
           >
             View Tournaments

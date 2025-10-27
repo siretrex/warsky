@@ -77,7 +77,7 @@ const Navbar = () => {
             : "-translate-y-24 -rotate-3 opacity-0"
         } flex justify-center items-center`}
       >
-        <ul className="flex gap-6 flex-col text-center">
+        <ul className="flex gap-1 flex-col text-center">
           {links.map((link) => (
             <li key={link.name}>
               <a
