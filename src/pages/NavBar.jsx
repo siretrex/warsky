@@ -9,8 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // ✅ Access Redux auth state
-  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   const links = [
     { name: "Home", href: "/" },
@@ -27,12 +26,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-md px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 w-full z-50 bg-black/40 backdrop-blur-md px-4 sm:px-6 py-3 flex justify-between items-center">
+      {/* Brand / Logo */}
       <h1
         onClick={() => navigate("/")}
-        className="text-3xl md:text-4xl font-bold text-yellow-400 font-heading cursor-pointer"
+        className="text-2xl sm:text-3xl md:text-4xl font-bold text-yellow-400 font-heading cursor-pointer"
       >
-      WarSky ESports
+        WarSky ESports
       </h1>
 
       {/* Desktop Menu */}
@@ -48,7 +48,7 @@ const Navbar = () => {
           </li>
         ))}
 
-        {/* ✅ Login / Logout Button */}
+        {/* Login / Logout Button */}
         <li>
           <button
             onClick={handleAuthClick}
@@ -59,7 +59,7 @@ const Navbar = () => {
         </li>
       </ul>
 
-      {/* Mobile Menu Icon */}
+      {/* Mobile Menu Button */}
       <div className="md:hidden">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -69,38 +69,33 @@ const Navbar = () => {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Dropdown Menu */}
       <div
-        className={`fixed top-0 left-0 w-full h-32 bg-black/90 backdrop-blur-md md:hidden transform transition-all duration-500 ${
+        className={`absolute left-0 top-full w-full bg-black/90 backdrop-blur-md md:hidden flex flex-col items-center gap-3 py-6 transition-all duration-500 ease-in-out ${
           isOpen
-            ? "translate-y-0 rotate-0 opacity-100"
-            : "-translate-y-24 -rotate-3 opacity-0"
-        } flex justify-center items-center`}
+            ? "opacity-100 translate-y-0 visible"
+            : "opacity-0 -translate-y-5 invisible"
+        }`}
       >
-        <ul className="flex gap-1 flex-col text-center">
-          {links.map((link) => (
-            <li key={link.name}>
-              <a
-                href={link.href}
-                onClick={() => setIsOpen(false)}
-                className="text-yellow-400 hover:text-yellow-500 font-medium text-lg transition duration-300"
-              >
-                {link.name}
-              </a>
-            </li>
-          ))}
-          <li>
-            <button
-              onClick={() => {
-                handleAuthClick();
-                setIsOpen(false);
-              }}
-              className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition"
-            >
-              {isAuthenticated ? "Logout" : "Login"}
-            </button>
-          </li>
-        </ul>
+        {links.map((link) => (
+          <a
+            key={link.name}
+            href={link.href}
+            onClick={() => setIsOpen(false)}
+            className="text-yellow-400 hover:text-yellow-500 font-medium text-lg transition duration-300"
+          >
+            {link.name}
+          </a>
+        ))}
+        <button
+          onClick={() => {
+            handleAuthClick();
+            setIsOpen(false);
+          }}
+          className="bg-yellow-400 text-black px-5 py-2 rounded-lg font-semibold hover:bg-yellow-500 transition"
+        >
+          {isAuthenticated ? "Logout" : "Login"}
+        </button>
       </div>
     </nav>
   );
