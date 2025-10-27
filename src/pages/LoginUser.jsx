@@ -35,7 +35,7 @@ const LoginUser = () => {
       
   
       setTimeout(() => {
-        window.location.href = "/home";
+        window.location.href = "/";
       }, 1500);
     } catch (err) {
       setMessage(
