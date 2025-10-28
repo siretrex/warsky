@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Copy, Check } from "lucide-react";
 import { useSelector } from "react-redux";
+import BaseURl from "../BaseURl";
 
 const RegisterTeam = () => {
   const location = useLocation();
@@ -78,7 +79,7 @@ const RegisterTeam = () => {
     }
 
     try {
-      const res = await fetch("https://warsakybackend.onrender.com/register-team", {
+      const res = await fetch(`${BaseURl}/register-team`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(team),

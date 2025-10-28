@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Eye, EyeOff } from "lucide-react"; // npm install lucide-react
+import BaseURl from "../BaseURl";
 
 const RegisterUser = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const RegisterUser = () => {
     setMessage("");
 
     try {
-      const res = await axios.post("https://warsakybackend.onrender.com/register", formData);
+      const res = await axios.post(`${BaseURl}/register`, formData);
       setMessage(res.data.message || "Registered successfully!");
       setFormData({
         username: "",

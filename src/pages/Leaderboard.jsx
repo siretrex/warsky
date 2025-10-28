@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Trophy, Medal } from "lucide-react";
+import BaseURl from "../BaseURl";
 
 const Leaderboard = () => {
   const [teams, setTeams] = useState([]);
@@ -9,7 +10,7 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const res = await axios.get("https://warsakybackend.onrender.com/teams");
+        const res = await axios.get(`${BaseURl}/teams`);
         setTeams(res.data || []);
       } catch (err) {
         console.error("Error fetching leaderboard:", err);

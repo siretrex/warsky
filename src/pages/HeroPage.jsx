@@ -3,6 +3,7 @@ import axios from "axios";
 import VideoSection from "./VideoSection";
 import Navbar from "./NavBar";
 import { useNavigate } from "react-router-dom";
+import BaseURl from "../BaseURl";
 
 const HeroPage = () => {
   const [tournaments, setTournaments] = useState([]);
@@ -17,7 +18,7 @@ const HeroPage = () => {
     }
 
     axios
-      .get("https://warsakybackend.onrender.com/tournament")
+      .get(`${BaseURl}/tournament`)
       .then((res) => {
         setTournaments(res.data);
       })

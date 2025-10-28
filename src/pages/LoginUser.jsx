@@ -4,6 +4,7 @@ import { Eye, EyeOff } from "lucide-react"; // npm install lucide-react
 import { useDispatch } from "react-redux";
 import { loginSuccess } from "../features/auth/authSlice"; // ✅ Redux action
 import { useSelector } from "react-redux";
+import BaseURl from "../BaseURl";
 
 const LoginUser = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const LoginUser = () => {
 
     try {
       // ✅ Backend login API
-      const res = await axios.post("https://warsakybackend.onrender.com/login", formData);
+      const res = await axios.post(`${BaseURl}/login`, formData);
 
       // ✅ Save token & update Redux
       dispatch(loginSuccess({ user: res.data.user, token: res.data.token }));
