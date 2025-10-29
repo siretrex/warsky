@@ -1,1 +1,1 @@
-export default "https://induction-turbo-pills-mean.trycloudflare.com";
+export default "https://warsakybackend.onrender.com";
