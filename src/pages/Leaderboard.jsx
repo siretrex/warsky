@@ -65,9 +65,9 @@ const Leaderboard = () => {
                 <th className="px-4 py-3 text-center">Rank</th>
                 <th className="px-4 py-3">Team Name</th>
                 <th className="px-4 py-3">Leader</th>
-                <th className="px-4 py-3 text-center">Kills</th>
-                <th className="px-4 py-3 text-center">Matches</th>
                 <th className="px-4 py-3 text-center">Points</th>
+                <th className="px-4 py-3 text-center">Matches</th>
+                <th className="px-4 py-3 text-center">Kills</th>
               </tr>
             </thead>
             <tbody>
@@ -97,15 +97,16 @@ const Leaderboard = () => {
                   <td className="px-4 py-3 text-gray-300">{team.leader_name}</td>
 
                   {/* Kills */}
-                  <td className="px-4 py-3 text-center">{team.kills}</td>
+                  <td className="px-4 py-3 text-center font-bold text-green-400">
+                    {team.total_points}
+                  </td>
+                  
 
                   {/* Matches */}
                   <td className="px-4 py-3 text-center">{team.matches_played}</td>
 
                   {/* Points */}
-                  <td className="px-4 py-3 text-center font-bold text-green-400">
-                    {team.total_points}
-                  </td>
+                  <td className="px-4 py-3 text-center">{team.kills}</td>
                 </tr>
               ))}
             </tbody>
