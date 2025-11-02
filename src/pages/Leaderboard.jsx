@@ -38,8 +38,14 @@ const Leaderboard = () => {
     );
   }
 
-  // ✅ Sort teams by total points
-  const sortedTeams = [...teams].sort((a, b) => b.total_points - a.total_points);
+  // ✅ Calculate total = placement_points + kills
+  const teamsWithTotal = teams.map((team) => ({
+    ...team,
+    total: (team.placement_points || 0) + (team.kills || 0),
+  }));
+
+  // ✅ Sort teams by total (highest first)
+  const sortedTeams = [...teamsWithTotal].sort((a, b) => b.total - a.total);
 
   // 🥇 Medal colors for top 3
   const medalColors = ["text-yellow-400", "text-gray-300", "text-amber-700"];
@@ -49,24 +55,23 @@ const Leaderboard = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold text-yellow-400 flex items-center justify-center gap-2">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-yellow-400 flex items-center justify-center gap-2">
             <Trophy className="text-yellow-400" /> Tournament Leaderboard
           </h1>
-          <p className="text-gray-400 mt-2">
+          <p className="text-gray-400 mt-2 text-sm sm:text-base">
             {sortedTeams[0]?.tournament_name || "Tournament"} 🏆
           </p>
         </div>
 
-        {/* Table */}
-        <div className="bg-gray-800 rounded-2xl shadow-xl w-full overflow-hidden">
-          <table className="w-full table-auto text-left">
-            <thead className="bg-gray-700 text-yellow-400 text-sm uppercase">
+        {/* ✅ Responsive Table Wrapper */}
+        <div className="bg-gray-800 rounded-2xl shadow-xl w-full overflow-x-auto">
+          <table className="min-w-[500px] w-full text-left text-sm sm:text-base">
+            <thead className="bg-gray-700 text-yellow-400 uppercase sticky top-0">
               <tr>
                 <th className="px-4 py-3 text-center">Rank</th>
                 <th className="px-4 py-3">Team Name</th>
-                <th className="px-4 py-3">Leader</th>
-                <th className="px-4 py-3 text-center">Points</th>
-                <th className="px-4 py-3 text-center">Matches</th>
+                <th className="px-4 py-3 text-center">Total</th>
+                <th className="px-4 py-3 text-center">Placement</th>
                 <th className="px-4 py-3 text-center">Kills</th>
               </tr>
             </thead>
@@ -79,7 +84,7 @@ const Leaderboard = () => {
                   }`}
                 >
                   {/* Rank */}
-                  <td className="px-4 py-3 font-bold text-center">
+                  <td className="px-4 py-3 font-bold text-center whitespace-nowrap">
                     {index < 3 ? (
                       <Medal
                         size={20}
@@ -91,22 +96,24 @@ const Leaderboard = () => {
                   </td>
 
                   {/* Team name */}
-                  <td className="px-4 py-3 font-semibold">{team.team_name}</td>
+                  <td className="px-4 py-3 font-semibold whitespace-nowrap">
+                    {team.team_name}
+                  </td>
 
-                  {/* Leader */}
-                  <td className="px-4 py-3 text-gray-300">{team.leader_name}</td>
+                  {/* Total */}
+                  <td className="px-4 py-3 text-center font-bold text-green-400">
+                    {team.total}
+                  </td>
+
+                  {/* Placement */}
+                  <td className="px-4 py-3 text-center">
+                    {team.placement_points || 0}
+                  </td>
 
                   {/* Kills */}
-                  <td className="px-4 py-3 text-center font-bold text-green-400">
-                    {team.total_points}
+                  <td className="px-4 py-3 text-center">
+                    {team.kills || 0}
                   </td>
-                  
-
-                  {/* Matches */}
-                  <td className="px-4 py-3 text-center">{team.matches_played}</td>
-
-                  {/* Points */}
-                  <td className="px-4 py-3 text-center">{team.kills}</td>
                 </tr>
               ))}
             </tbody>
@@ -114,7 +121,7 @@ const Leaderboard = () => {
         </div>
 
         {/* Footer */}
-        <div className="text-center text-gray-400 mt-6 text-sm">
+        <div className="text-center text-gray-400 mt-6 text-xs sm:text-sm">
           WarSky Season Cup 1
         </div>
       </div>
